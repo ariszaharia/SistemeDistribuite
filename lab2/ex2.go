@@ -2,17 +2,20 @@ package main
 
 import (
 	"fmt"
-	"time"
 )
 
 func main(){
-	ch := make(chan string, 1)
-	go primesteMesaj(ch)
+	ch := make(chan string)
+	done := make(chan bool)
+
+	go primesteMesaj(ch, done)
 	ch <- "salut"
-	time.Sleep(10 * time.Millisecond)
+
+	<-done
 }
 
-func primesteMesaj(c chan string){
+func primesteMesaj(c <-chan string, done chan<- bool){
 	mesaj := <-c
 	fmt.Println(mesaj)
+	done <- true
 }

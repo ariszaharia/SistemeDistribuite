@@ -5,12 +5,13 @@ import (
 )
 
 func main(){
-	ch := make(chan string, 2)
-	ch <- "salut"
-	ch <- "aris"
-	close(ch)
+	ch := make(chan string)
 
-	for elem := range ch {
-		fmt.Println(elem)
-	}
+	go func(){
+		ch <- "salut"
+		ch <- "aris"
+	}()
+
+	fmt.Println(<-ch)
+	fmt.Println(<-ch)
 }

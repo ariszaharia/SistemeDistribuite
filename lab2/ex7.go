@@ -22,7 +22,7 @@ func main(){
 	go robot("ROBOT1", traseu1, ch1ch2, ch2ch1, done)
 	go robot("ROBOT2", traseu2, ch2ch1, ch1ch2, done)
 
-	fmt.Println("Observer confirm:", <-done)
+	fmt.Println("Observer confirma:", <-done)
 	fmt.Println("Observer confirma:", <-done)
 }
 
@@ -31,7 +31,7 @@ func robot(nume string, traseu []coordonate, in chan coordonate, out chan coordo
 
 	go func(){
 		for pozitie := range in{
-			fmt.Printf("%s pozitie coleg: X:%d, Y:%d\n", nume, pozitie.height, pozitie.length)
+			fmt.Printf("%s pozitie coleg: X:%d, Y:%d\n", nume, pozitie.length, pozitie.height)
 		}
 		over <- true
 	}()
