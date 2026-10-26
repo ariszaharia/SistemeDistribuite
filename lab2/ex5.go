@@ -15,10 +15,10 @@ func main(){
 	fmt.Println(<-chrez)
 }
 
-func send(ch chan string){
+func send(ch chan<- string){
 	ch <- "mesaj"
 }
 
-func receive(ch chan string, ch1 chan string){
+func receive(ch <-chan string, ch1 chan<- string){
 	ch1 <- <-ch
 }
