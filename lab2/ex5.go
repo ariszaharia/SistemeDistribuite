@@ -10,7 +10,9 @@ func main(){
 
 	go send(chsend)
 
-	go receive(chsend, chrez)
+	go func(){
+		chrez <- receive(chsend)
+	}()
 
 	fmt.Println(<-chrez)
 }
@@ -19,6 +21,6 @@ func send(ch chan<- string){
 	ch <- "mesaj"
 }
 
-func receive(ch <-chan string, ch1 chan<- string){
-	ch1 <- <-ch
+func receive(ch <-chan string) string{
+	return <-ch
 }

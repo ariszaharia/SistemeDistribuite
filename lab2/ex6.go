@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 	"time"
 )
 
@@ -25,7 +26,7 @@ func main(){
 
 func robot(nume string, finishLine chan<- string){
 	for pozitie := 0; pozitie < finish; pozitie++ {
-		time.Sleep(100 * time.Millisecond)
+		time.Sleep(time.Duration(50+rand.Intn(100)) * time.Millisecond)
 	}
 	finishLine <- nume
 }
